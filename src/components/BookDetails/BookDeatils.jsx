@@ -1,8 +1,17 @@
 import { useLoaderData, useParams } from "react-router";
+import { addToStoreReadList, addToStoreWishList } from "../utility/addToDb";
 
- 
+
 
 const BookDeatils = ({}) => {
+
+     const handelMarkAsRed = (id) =>{
+        addToStoreReadList(id);
+    }
+    const handleWishList = (id) => {
+        addToStoreWishList(id);
+    }
+
     // provide dynamic id from url using useParams 
         const {bookId} = useParams();
         const data = useLoaderData();
@@ -34,8 +43,8 @@ const BookDeatils = ({}) => {
                         <p>Total Pages : {totalPages}</p>
                         <p>Year Of Publishing :  {yearOfPublishing}</p>
                      </div>
-                    <button className="btn btn-outline btn-accent px-7 font-semibold text-lg py-3 mr-4">Mark As Read</button>
-                    <button className="btn btn-accent px-7 font-semibold text-lg text-white py-3">WishList</button>
+                    <button onClick={() => handelMarkAsRed(currentBookId)} className="btn btn-outline btn-accent px-7 font-semibold text-lg py-3 mr-4">Mark As Read</button>
+                    <button onClick={() => handleWishList(currentBookId)} className="btn btn-accent px-7 font-semibold text-lg text-white py-3">WishList</button>
                     </div>
                 </div>
                 </div>
